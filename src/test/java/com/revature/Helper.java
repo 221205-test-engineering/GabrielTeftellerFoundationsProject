@@ -42,6 +42,7 @@ public class Helper
         Login.passInput.sendKeys("chomp!");
         Login.submit.click();
         waitForPage(driver, ManagerHome.newMatrixButton);
+        System.out.println("Test");
     }
 
     public static void loginAsTester(WebDriver driver)
