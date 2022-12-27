@@ -11,7 +11,7 @@ Feature: Navigation
 
     Scenario: Back Navigation
         When The manager clicks on Matrices 
-        Then The title of the page should be Matrix Page 
+        Then The manager should be on the matrices page
         When The manager clicks the browser back button 
         Then The manager should be on the home page
         When The manager clicks on Test Cases
@@ -23,11 +23,11 @@ Feature: Navigation
         Then The title of page should be "<title>"
     
     Examples:
-        | link           | title               | 
-        | Matrices       |      |
-        | Test Cases     | Test Case Overivew  | 
-        | Report a Defect| Defect Reporter     |
-        | Defect Overview| Defect Overview     |
+        | link           | title               |
+        | Matrices       | Matrix Dashboard    |
+        | Test Cases     | Test Cases          |
+        | Report a Defect| Case Reporter       |
+        | Defect Overview| Case Overview       |
 
 
 

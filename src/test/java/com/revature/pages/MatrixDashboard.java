@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class MatrixDashboard extends Page
 {
     public WebDriver driver;
@@ -18,6 +20,7 @@ public class MatrixDashboard extends Page
 
     // PageFactory elements
 
-    @FindBy(xpath = "//*[@id=\"root\"]/ul")
-    public static WebElement matricesList;
+    @FindBy(css = "button")                                 // get help with this
+    public static List<WebElement> matrixButtons;
+
 }

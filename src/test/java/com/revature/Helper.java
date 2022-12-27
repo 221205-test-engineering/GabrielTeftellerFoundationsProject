@@ -1,6 +1,7 @@
 package com.revature;
 
 import com.revature.pages.*;
+import org.junit.function.ThrowingRunnable;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -37,60 +38,34 @@ public class Helper
 
     public static void loginAsManager(WebDriver driver)
     {
-        driver.get("https://bugcatcher-dan.coe.revaturelabs.com/?dev=0");
+        driver.get("https://bugcatcher-dan.coe.revaturelabs.com/?dev=14");
         Login.userInput.sendKeys("g8tor");
         Login.passInput.sendKeys("chomp!");
         Login.submit.click();
-        waitForPage(driver, ManagerHome.newMatrixButton);
-        System.out.println("Test");
+        waitForPage(driver, ManagerHome.createMatrixButton);
     }
 
     public static void loginAsTester(WebDriver driver)
     {
-        driver.get("https://bugcatcher-dan.coe.revaturelabs.com/?dev=0");
+        killAlert(driver);
+        driver.get("https://bugcatcher-dan.coe.revaturelabs.com/?dev=14");
         Login.userInput.sendKeys("ryeGuy");
         Login.passInput.sendKeys("coolbeans");
         Login.submit.click();
         waitForPage(driver, TesterHome.testCaseTable);
     }
 
-    /*
-    public static void waitForHome(WebDriver driver)
+    public static void checkForAlert(WebDriver driver)
     {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        wait.until
-        (
-            ExpectedConditions.or
-            (
-                ExpectedConditions.visibilityOf(TesterHome.defectList),
-                ExpectedConditions.elementToBeClickable(ManagerHome.newMatrixButton)
-            )
-        );
+        driver.switchTo().alert().accept();
     }
 
-    public static void waitForMatrices(WebDriver driver)
+    public static void killAlert(WebDriver driver)
     {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(MatrixDashboard.matricesList));
+        try
+        {
+            driver.switchTo().alert().accept();
+        }
+        catch(org.openqa.selenium.NoAlertPresentException ignored) { }
     }
-
-    public static void waitForCases(WebDriver driver)
-    {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(TestCaseDashboard.testCaseTable));
-    }
-
-    public static void waitForReporter(WebDriver driver)
-    {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(DefectReporter.reportButton));
-    }
-
-    public static void waitForOverview(WebDriver driver)
-    {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(DefectOverview.defectList));
-    }
-     */
 }

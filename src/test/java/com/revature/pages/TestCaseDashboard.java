@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class TestCaseDashboard extends Page
 {
     public WebDriver driver;
@@ -27,4 +29,27 @@ public class TestCaseDashboard extends Page
 
     @FindBy(xpath = "//*[@id=\"root\"]/table")
     public static WebElement testCaseTable;
+
+    @FindBy(xpath = "/html/body/div[3]/div/div")
+    public static WebElement modal;
+
+    @FindBy(xpath = "/html/body/div[3]/div/div/button[1]")
+    public static WebElement modalClose;
+
+    @FindBy(xpath = "/html/body/div[3]/div/div/button[2]/a")
+    public static WebElement modalEdit;
+
+    @FindBy(xpath = "/html/body/div[3]/div/div/p[6]")
+    public static WebElement modalPerformedBy;
+
+    @FindBy(xpath = "//*[@id=\"root\"]/table/tbody/tr/td[3]")   // get help with this one as well as the following 2;
+    public static List<WebElement> results;                     // the list is not being populated.
+
+    @FindBy(tagName = "button")
+    public static List<WebElement> detailsButtons;
+
+    @FindBy(xpath = "//*[@id=\"root\"]/table/tbody/tr/td[2]")
+    public static List<WebElement> descriptions;
+
+
 }

@@ -11,7 +11,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = {"src/test/java/com/revature/features/login/login-negative.feature", "src/test/java/com/revature/features/login/login-positive.feature", "src/test/java/com/revature/features/navigation/navigation.feature"}, glue = "com.revature.steps")
+@CucumberOptions(features =
+    {
+        "src/test/java/com/revature/features/login/login-negative.feature",
+        "src/test/java/com/revature/features/login/login-positive.feature",
+        "src/test/java/com/revature/features/navigation/navigation.feature",
+        "src/test/java/com/revature/features/defect/report-defect-negative.feature",
+        "src/test/java/com/revature/features/defect/report-defect-positive.feature"
+    }, glue = "com.revature.steps")
 public class Runner
 {
     public static WebDriver driver;
@@ -22,6 +29,7 @@ public class Runner
     public static TestCaseDashboard cases;
     public static DefectReporter defectReports;
     public static DefectOverview overview;
+    public static CaseEditor caseEditor;
 
     @BeforeClass
     public static void setup() {
@@ -35,6 +43,7 @@ public class Runner
         cases = new TestCaseDashboard(driver);
         defectReports = new DefectReporter(driver);
         overview = new DefectOverview(driver);
+        caseEditor = new CaseEditor(driver);
     }
 
     @AfterClass

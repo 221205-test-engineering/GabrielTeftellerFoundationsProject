@@ -1,7 +1,8 @@
 Feature: Test Cases
 
     Background:
-        Given The tester is on the test case dashboard 
+        Given The tester is logged in as a tester
+        Given The tester is on the test case dashboard
 
     Scenario: Add A Test Case
         When The tester types Description into input with 
@@ -22,8 +23,8 @@ Feature: Test Cases
     Scenario: Update a Test Case
         When The tester presses on details
         Then A test case modal should appear showing the case ID
-        Then The performed by field should say No One 
-        When The tester presses the close buttton
+        Then The performed by field should say No One
+        When The tester presses the modal close button
         Then The Modal Should be closed
     
     Scenario: Edit Existing Case 

@@ -34,6 +34,10 @@ public class DefectReporter extends Page
     @FindBy(xpath = "//*[@id=\"defectReport\"]/button")
     public static WebElement reportButton;
 
+    @FindBy(xpath = "/html/body/div[3]/div/div/h4")
+    public static WebElement modalText;
+
     @FindBy(xpath = "/html/body/div[3]/div/div/button")
-    public static WebElement confirmButton;
+    public static WebElement closeModalButton;
+
 }

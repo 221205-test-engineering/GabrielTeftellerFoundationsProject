@@ -15,7 +15,6 @@ public class Login
         PageFactory.initElements(driver, this);
     }
 
-// PageFactory elements
     @FindBy(name = "username")
     public static WebElement userInput;
 

@@ -16,9 +16,6 @@ public class ManagerHome extends Page
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//*[@id=\"root\"]/button")
-    public static WebElement newMatrixButton;
-
     @FindBy(xpath = "//*[@id=\"root\"]/table/tbody/tr")
     public static WebElement defectTable;
 
@@ -39,5 +36,4 @@ public class ManagerHome extends Page
 
     @FindBy(xpath = "//*[@id=\"root\"]/button")
     public static WebElement createMatrixButton;
-
 }
