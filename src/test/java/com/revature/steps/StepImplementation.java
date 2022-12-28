@@ -7,26 +7,29 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.hu.De;
+import io.cucumber.java.it.Ma;
 import junit.framework.TestCase;
 import org.junit.Test;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.*;
 
-public class StepImplementation {
+public class StepImplementation
+{
     public WebDriver driver = Runner.driver;
 
     // feature step implementations
 
     @Given("The employee is on the login page")
-    public void the_employee_is_on_the_login_page() {
+    public void the_employee_is_on_the_login_page()
+    {
         driver.get("https://bugcatcher-dan.coe.revaturelabs.com/?dev=14");
     }
 
@@ -167,8 +170,10 @@ public class StepImplementation {
     }
 
     @Given("The tester is on the test case dashboard")
-    public void theTesterIsOnTheTestCaseDashboard() {
+    public void theTesterIsOnTheTestCaseDashboard()
+    {
         TesterHome.links.get(1).click();
+        Helper.waitForPage(driver, TestCaseDashboard.descInput);
     }
 
     @When("The tester types Description into input with")
@@ -203,13 +208,10 @@ public class StepImplementation {
     }
 
     @When("The tester presses on details")
-    public void theTesterPressesOnDetails() {
-        int length = TestCaseDashboard.detailsButtons.size();
-        System.out.println(length);
-        for (int i = 0; i < length; ++i) {
-            System.out.println(TestCaseDashboard.detailsButtons.get(i).getText());
-        }
-        TestCaseDashboard.detailsButtons.get(length - 1).click();
+    public void theTesterPressesOnDetails()
+    {
+        int lastElement = (TestCaseDashboard.detailsButtons.size()) - 1;
+        TestCaseDashboard.detailsButtons.get(lastElement).click();
     }
 
     @Then("A test case modal should appear showing the case ID")
@@ -360,97 +362,116 @@ public class StepImplementation {
     @Given("The manager is on the matrix homepage")
     public void theManagerIsOnTheMatrixHomepage()
     {
+        Helper.killAlert(driver);
         Page.links.get(0).click();
+        Helper.waitForPage(driver, MatrixDashboard.titleText);
     }
 
     @Given("The manager has selected the matrix")
     public void theManagerHasSelectedTheMatrix()
     {
-        MatrixDashboard.matrixButtons.get(0).click();
+        MatrixDashboard.showButtons.get(0).click();
     }
 
     @When("The manager adds a defect")
     public void theManagerAddsADefect()
     {
-        throw new io.cucumber.java.PendingException();
+        MatrixDashboard.editButtons.get(0).click();
+        MatrixDashboard.defectInputs.get(0).sendKeys("901");
+        MatrixDashboard.addButtons.get(1).click();
     }
 
     @When("The manager confirms their changes")
     public void theManagerConfirmsTheirChanges()
     {
-        throw new io.cucumber.java.PendingException();
+        MatrixDashboard.saveRequirementsButtons.get(0).click();
     }
 
-    @Then("Then the matrix should saved")
-    public void thenTheMatrixShouldSaved()
+    @Then("The matrix should save")
+    public void theMatrixShouldSave()
     {
-        throw new io.cucumber.java.PendingException();
+        assertEquals(driver.switchTo().alert().getText(), "Matrix Saved");
     }
 
     @When("The manager adds a Test Cases")
     public void theManagerAddsATestCases()
     {
-        throw new io.cucumber.java.PendingException();
+        MatrixDashboard.editButtons.get(0).click();
+        MatrixDashboard.testCaseInputs.get(0).sendKeys("801");
+        MatrixDashboard.addButtons.get(0).click();
     }
 
     @Then("The manager should see pending defects")
     public void theManagerShouldSeePendingDefects()
     {
-        throw new io.cucumber.java.PendingException();
+        assertNotNull(ManagerHome.selectButtons);
     }
 
     @When("The manager clicks on the select button for a defect")
     public void theManagerClicksOnTheSelectButtonForADefect()
     {
-        throw new io.cucumber.java.PendingException();
+        Helper.setA(ManagerHome.selectButtons.size());
+        ManagerHome.selectButtons.get(0).click();
     }
 
     @Then("The defect description should appear in bold")
     public void theDefectDescriptionShouldAppearInBold()
     {
-        throw new io.cucumber.java.PendingException();
+        assertTrue(ManagerHome.boldDescriptions.get(0).isDisplayed());
     }
 
     @When("The manager selects a tester from the drop down list")
     public void theManagerSelectsATesterFromTheDropDownList()
     {
-        throw new io.cucumber.java.PendingException();
+        ManagerHome.assignmentInputs.get(0).sendKeys("ryeGuy");
     }
 
     @When("The manager clicks assign")
     public void theManagerClicksAssign()
     {
-        throw new io.cucumber.java.PendingException();
+        ManagerHome.assignButtons.get(0).click();
     }
 
     @Then("The defect should disappear from the list")
-    public void theDefectShouldDisappearFromTheList()
-    {
-        throw new io.cucumber.java.PendingException();
+    public void theDefectShouldDisappearFromTheList() throws InterruptedException {
+        Thread.sleep(1000);
+        assertEquals((Helper.intA - 1), ManagerHome.selectButtons.size());
     }
 
     @Given("The tester is on the Home Page")
     public void theTesterIsOnTheHomePage()
     {
         Page.links.get(5).click();
+        Helper.waitForPage(driver, TesterHome.titleText);
     }
 
     @Then("The tester can can see only defects assigned to them")
     public void theTesterCanCanSeeOnlyDefectsAssignedToThem()
     {
-        throw new io.cucumber.java.PendingException();
+        assertTrue(TesterHome.defects.get(0).isDisplayed());
     }
 
     @When("The tester changes to defect to any status")
-    public void theTesterChangesToDefectToAnyStatus()
-    {
-        throw new io.cucumber.java.PendingException();
+    public void theTesterChangesToDefectToAnyStatus() throws InterruptedException {
+        int lastElement = (TesterHome.statuses.size()) - 1;
+        Helper.setA(TesterHome.statuses.get(lastElement).getText());
+        Thread.sleep(500);
+        TesterHome.defects.get(lastElement).click();
+        Thread.sleep(500);
+        TesterHome.changeStatusButtons.get(lastElement).click();
+        Thread.sleep(500);
+        TesterHome.acceptedButtons.get(lastElement).click();
     }
 
     @Then("The tester should see the defect has a different status")
     public void theTesterShouldSeeTheDefectHasADifferentStatus()
     {
-        throw new io.cucumber.java.PendingException();
+        int lastElement = (TesterHome.statuses.size()) - 1;
+        for (int i = 0; i <= lastElement; ++i)
+        {
+            System.out.println(TesterHome.statuses.get(i).getText());
+        }
+        assertNotEquals(Helper.stringA, TesterHome.statuses.get(lastElement).getText());
     }
 
     @Given("The employee is on the Defect Reporter Page")
@@ -576,12 +597,12 @@ public class StepImplementation {
     @Then("A modal should appear with a Defect ID")
     public void aModalShouldAppearWithADefectID()
     {
-        assertNotNull(DefectReporter.modalText);
+        assertTrue(DefectReporter.modalText.getText().contains("Defect"));
     }
 
     @When("The employee clicks close")
-    public void theEmployeeClicksClose() throws InterruptedException {
-        Thread.sleep(1000);
+    public void theEmployeeClicksClose()
+    {
         DefectReporter.closeModalButton.click();
     }
 
@@ -591,4 +612,3 @@ public class StepImplementation {
         assertNull(DefectReporter.modalText);
     }
 }
-

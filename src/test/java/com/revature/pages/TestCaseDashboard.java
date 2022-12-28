@@ -42,13 +42,13 @@ public class TestCaseDashboard extends Page
     @FindBy(xpath = "/html/body/div[3]/div/div/p[6]")
     public static WebElement modalPerformedBy;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/table/tbody/tr/td[3]")   // get help with this one as well as the following 2;
-    public static List<WebElement> results;                     // the list is not being populated.
+    @FindBy(xpath = "//td[3]")
+    public static List<WebElement> results;
 
-    @FindBy(tagName = "button")
+    @FindBy(xpath = "//button[contains(text(), 'Details')]")
     public static List<WebElement> detailsButtons;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/table/tbody/tr/td[2]")
+    @FindBy(xpath = "//td[2]")
     public static List<WebElement> descriptions;
 
 

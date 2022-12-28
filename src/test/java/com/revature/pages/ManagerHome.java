@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class ManagerHome extends Page
 {
     public WebDriver driver;
@@ -16,8 +18,17 @@ public class ManagerHome extends Page
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//*[@id=\"root\"]/table/tbody/tr")
-    public static WebElement defectTable;
+    @FindBy(xpath = "//button[contains(text(), 'Select')]")
+    public static List<WebElement> selectButtons;
+
+    @FindBy(xpath = "//h4")
+    public static List<WebElement> boldDescriptions;
+
+    @FindBy(xpath = "//button[contains(text(), 'Assign')]")
+    public static List<WebElement> assignButtons;
+
+    @FindBy(xpath = "//input")
+    public static List<WebElement> assignmentInputs;
 
     @FindBy(xpath = "//*[@id=\"root\"]/input")
     public static WebElement matrixTitleInput;

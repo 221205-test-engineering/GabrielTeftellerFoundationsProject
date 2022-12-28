@@ -6,11 +6,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.WebDriver;
-
 import java.time.Duration;
+import java.util.List;
 
 public class Helper
 {
+    public static int intA;
+    public static int intB;
+    public static String stringA;
+    public static String stringB;
+    public static List<WebElement> listA;
+    public static List<WebElement> listB;
+
     public static void waitForAlert(WebDriver driver)
     {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -67,5 +74,35 @@ public class Helper
             driver.switchTo().alert().accept();
         }
         catch(org.openqa.selenium.NoAlertPresentException ignored) { }
+    }
+
+    public static void setA(int setInt)
+    {
+        intA = setInt;
+    }
+
+    public static void setB(int setInt)
+    {
+        intB = setInt;
+    }
+
+    public static void setA(String setString)
+    {
+        stringA = setString;
+    }
+
+    public static void setB(String setString)
+    {
+        stringB = setString;
+    }
+
+    public static void setA(List<WebElement> setList)
+    {
+        listA = setList;
+    }
+
+    public static void setB(List<WebElement> setList)
+    {
+        listB = setList;
     }
 }

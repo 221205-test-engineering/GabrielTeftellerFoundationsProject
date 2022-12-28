@@ -13,11 +13,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 @RunWith(Cucumber.class)
 @CucumberOptions(features =
     {
-        "src/test/java/com/revature/features/login/login-negative.feature",
         "src/test/java/com/revature/features/login/login-positive.feature",
+        "src/test/java/com/revature/features/login/login-negative.feature",
         "src/test/java/com/revature/features/navigation/navigation.feature",
+        "src/test/java/com/revature/features/defect/report-defect-positive.feature",
         "src/test/java/com/revature/features/defect/report-defect-negative.feature",
-        "src/test/java/com/revature/features/defect/report-defect-positive.feature"
+        "src/test/java/com/revature/features/defect/assign-defect.feature",
+        "src/test/java/com/revature/features/defect/defect-status.feature",
+        "src/test/java/com/revature/features/matrix/matrix.feature",
+        "src/test/java/com/revature/features/testcases/testcases.feature"
     }, glue = "com.revature.steps")
 public class Runner
 {

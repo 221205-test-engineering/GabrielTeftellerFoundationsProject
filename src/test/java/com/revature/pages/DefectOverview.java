@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class DefectOverview extends Page
 {
     public WebDriver driver;
@@ -16,6 +18,6 @@ public class DefectOverview extends Page
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//*[@id=\"root\"]/ul")
-    public static WebElement defectList;
+    @FindBy(xpath = "//b[contains(text(), 'ID')]")
+    public static List<WebElement> defects;
 }

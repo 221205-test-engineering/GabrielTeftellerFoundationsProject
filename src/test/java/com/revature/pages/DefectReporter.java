@@ -31,13 +31,16 @@ public class DefectReporter extends Page
     @FindBy(name = "priority")
     public static WebElement prioritySlider;
 
+    @FindBy(xpath = "//*[@role = 'dialog']")
+    public static WebElement modal;
+
     @FindBy(xpath = "//*[@id=\"defectReport\"]/button")
     public static WebElement reportButton;
 
-    @FindBy(xpath = "/html/body/div[3]/div/div/h4")
+    @FindBy(xpath = "//div[1]//h4[contains(text(), 'Defect')]")
     public static WebElement modalText;
 
-    @FindBy(xpath = "/html/body/div[3]/div/div/button")
+    @FindBy(name = "//div[1]//button")
     public static WebElement closeModalButton;
 
 }
